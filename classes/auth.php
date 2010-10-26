@@ -13,7 +13,7 @@ abstract class Auth extends Kohana_Auth
 	 * Gets the currently logged in user from the session.
 	 * Creates a non-saved user object no user is currently logged in.
 	 *
-	 * @return Model_User
+	 * @return Model_Vendo_User
 	 */
 	public function get_user()
 	{
@@ -21,7 +21,7 @@ abstract class Auth extends Kohana_Auth
 
 		if ( ! $status)
 		{
-			$user = new Model_User;
+			$user = new Model_Vendo_User;
 			$this->_session->set($this->_config['session_key'], $user);
 			return $user;
 		}

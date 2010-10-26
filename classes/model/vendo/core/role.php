@@ -8,7 +8,7 @@
  * @copyright  (c) 2010 Jeremy Bush
  * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
  */
-class Model_Role extends AutoModeler_ORM
+class Model_Vendo_Core_Role extends AutoModeler_ORM
 {
 	const LOGIN = 1;
 	const ADMIN = 2;

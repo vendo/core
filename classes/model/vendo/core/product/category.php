@@ -9,7 +9,7 @@
  * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
  */
 
-class Model_Product_Category extends AutoModeler_ORM
+class Model_Vendo_Core_Product_Category extends AutoModeler_ORM
 {
 	protected $_table_name = 'product_categories';
 
@@ -27,7 +27,7 @@ class Model_Product_Category extends AutoModeler_ORM
 	);
 
 	protected $_has_many = array(
-		'products',
+		'vendo_products',
 	);
 
 	/**
@@ -61,7 +61,7 @@ class Model_Product_Category extends AutoModeler_ORM
 	 */
 	public function has_category($category_id)
 	{
-		foreach (AutoModeler_ORM::factory('product_category')->fetch_where(
+		foreach (AutoModeler_ORM::factory('vendo_product_category')->fetch_where(
 			array(
 				array('parent_id', '=', $category_id)
 			)
@@ -92,7 +92,7 @@ class Model_Product_Category extends AutoModeler_ORM
 		$tree = array();
 		$compare_object = NULL == $product ? $this : $product;
 
-		foreach (AutoModeler_ORM::factory('product_category')->fetch_where(
+		foreach (AutoModeler_ORM::factory('vendo_product_category')->fetch_where(
 			array(
 				array('parent_id', '=', $start)
 			)

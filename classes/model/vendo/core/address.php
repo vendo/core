@@ -8,7 +8,7 @@
  * @copyright  (c) 2010 Jeremy Bush
  * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
  */
-class Model_Address extends AutoModeler_ORM
+class Model_Vendo_Core_Address extends AutoModeler_ORM
 {
 	protected $_table_name = 'addresses';
 

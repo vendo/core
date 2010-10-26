@@ -9,7 +9,7 @@
  *
  * @group Vendo_Core
  */
-class Model_Photo_Test extends Vendo_TestCase
+class Model_Vendo_Photo_Test extends Vendo_TestCase
 {
 	/**
 	 * Tests that we can process and read and delete a photo
@@ -18,7 +18,7 @@ class Model_Photo_Test extends Vendo_TestCase
 	 */
 	public function test_do_it()
 	{
-		$photo = new Model_Photo;
+		$photo = new Model_Vendo_Photo;
 		$photo->file = DOCROOT.'media/images/grid.png';
 		$photo->save();
 

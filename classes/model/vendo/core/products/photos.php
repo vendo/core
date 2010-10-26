@@ -1,6 +1,14 @@
 <?php
 
-class Model_Products_Photos extends AutoModeler_ORM
+/**
+ * Join table model for metadata
+ *
+ * @package    Vendo
+ * @author     Jeremy Bush
+ * @copyright  (c) 2010 Jeremy Bush
+ * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
+ */
+class Model_Vendo_Core_Products_Photos extends AutoModeler_ORM
 {
 	protected $_table_name = 'products_photos';
 

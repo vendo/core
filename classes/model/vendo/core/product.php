@@ -8,7 +8,7 @@
  * @copyright  (c) 2010 Jeremy Bush
  * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
  */
-class Model_Product extends AutoModeler_ORM
+class Model_Vendo_Core_Product extends AutoModeler_ORM
 {
 	protected $_table_name = 'products';
 
@@ -51,10 +51,10 @@ class Model_Product extends AutoModeler_ORM
 	 * returns the primary photo object for this product. Can return an empty
 	 * model if product has no photos
 	 *
-	 * @return Model_Photo
+	 * @return Model_Vendo_Photo
 	 */
 	public function primary_photo()
 	{
-		return new Model_Photo($this->primary_photo_id);
+		return new Model_Vendo_Photo($this->primary_photo_id);
 	}
 }

@@ -8,7 +8,7 @@
  * @copyright  (c) 2010 Jeremy Bush
  * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
  */
-class Model_User extends AutoModeler_ORM
+class Model_Vendo_Core_User extends AutoModeler_ORM
 {
 	protected $_table_name = 'users';
 
@@ -100,7 +100,7 @@ class Model_User extends AutoModeler_ORM
 	{
 		if ($key == 'address' AND ! $this->_data['address_id'])
 		{
-			return new Model_Address;
+			return new Model_Vendo_Address;
 		}
 
 		return parent::__get($key);
@@ -143,7 +143,7 @@ class Model_User extends AutoModeler_ORM
 	 */
 	public function check_unique_email(Validate $array, $field)
 	{
-		$user = new Model_User($array[$field]);
+		$user = new Model_Vendo_User($array[$field]);
 
 		// Only error if this is a new or different object
 		if ($user->id AND $user->id != $this->id)

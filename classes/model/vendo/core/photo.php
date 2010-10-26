@@ -1,6 +1,14 @@
 <?php
 
-class Model_Photo extends AutoModeler_ORM
+/**
+ * Photo model
+ *
+ * @package    Vendo
+ * @author     Jeremy Bush
+ * @copyright  (c) 2010 Jeremy Bush
+ * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
+ */
+class Model_Vendo_Core_Photo extends AutoModeler_ORM
 {
 	protected $_table_name = 'photos';
 
@@ -14,7 +22,7 @@ class Model_Photo extends AutoModeler_ORM
 	);
 
 	protected $_belongs_to = array(
-		'products'
+		'vendo_products'
 	);
 
 	/* Holding data for a new photo file. Set this to replace the image assoc
