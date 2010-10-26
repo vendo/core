@@ -30,11 +30,11 @@ class Model_Vendo_Core_Product extends AutoModeler_ORM
 	);
 
 	protected $_belongs_to = array(
-		'product_categories',
+		'vendo_product_categories',
 	);
 
 	protected $_has_many = array(
-		'photos',
+		'vendo_photos',
 	);
 
 	/**
@@ -44,7 +44,9 @@ class Model_Vendo_Core_Product extends AutoModeler_ORM
 	 */
 	public function has_category($category_id)
 	{
-		return $this->has('product_categories', $category_id);
+		return AutoModeler_ORM::factory(
+			'vendo_product_category', $category_id
+		)->has('vendo_products', $this->id);
 	}
 
 	/**

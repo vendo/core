@@ -25,6 +25,6 @@ class Model_Vendo_Core_Role extends AutoModeler_ORM
 	);
 
 	protected $_belongs_to = array(
-		'users',
+		'vendo_users',
 	);
 }

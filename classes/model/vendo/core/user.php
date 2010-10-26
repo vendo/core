@@ -34,7 +34,7 @@ class Model_Vendo_Core_User extends AutoModeler_ORM
 	);
 
 	protected $_has_many = array(
-		'roles',
+		'vendo_roles',
 	);
 
 	protected $_shopping_cart;
