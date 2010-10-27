@@ -8,7 +8,7 @@
  * @copyright  (c) 2010 Jeremy Bush
  * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
  */
-class Model_Vendo_Core_User extends AutoModeler_ORM
+class Model_Vendo_Core_User extends AutoModeler_ORM implements Model_ACL_User
 {
 	protected $_table_name = 'users';
 
@@ -104,6 +104,21 @@ class Model_Vendo_Core_User extends AutoModeler_ORM
 		}
 
 		return parent::__get($key);
+	}
+
+	/**
+	 * Overload has() to translate role to vendo_role
+	 *
+	 * @return bool
+	 */
+	public function has($key, $value)
+	{
+		if ('roles' == $key)
+		{
+			$key = 'vendo_roles';
+		}
+
+		return parent::has($key, $value);
 	}
 
 	/**
