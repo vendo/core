@@ -8,8 +8,10 @@
  * @copyright  (c) 2010 Jeremy Bush
  * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
  */
-class Model_Vendo_Core_User extends Model_User implements Model_ACL_User
+class Model_Vendo_Core_User_AutoModeler extends Model_User implements Model_ACL_User
 {
+	protected $_shopping_cart;
+
 	/**
 	 * Overload __get to return empty address objects
 	 * 
