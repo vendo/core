@@ -13,6 +13,20 @@ class Model_Vendo_Core_User_AutoModeler extends Model_User implements Model_ACL_
 	protected $_shopping_cart;
 
 	/**
+	 * Overload constructor to set shopping cart
+	 *
+	 * @return null
+	 */
+	public function __construct($id = NULL)
+	{
+		parent::__construct($id);
+
+		$this->_shopping_cart = new Model_Order;
+
+		$this->_has_many = array_merge($this->_has_many, array('vendo_roles'));
+	}
+
+	/**
 	 * Overload __get to return empty address objects
 	 * 
 	 * @param mixed $key the key to get
@@ -21,7 +35,7 @@ class Model_Vendo_Core_User_AutoModeler extends Model_User implements Model_ACL_
 	 */
 	public function __get($key)
 	{
-		if ($key == 'address' AND ! $this->address)
+		if ($key == 'address' AND ! $this->_data['address_id'])
 		{
 			return new Model_Vendo_Address;
 		}
@@ -63,16 +77,6 @@ class Model_Vendo_Core_User_AutoModeler extends Model_User implements Model_ACL_
 		}
 
 		return $this->_shopping_cart;
-	}
-
-	/**
-	 * Empty complete_login() method for Auth. May contain behavior later.
-	 * 
-	 * @return null
-	 */
-	public function complete_login()
-	{
-		
 	}
 
 	/**
