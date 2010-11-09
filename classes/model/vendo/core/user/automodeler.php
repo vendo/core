@@ -24,6 +24,8 @@ class Model_Vendo_Core_User_AutoModeler extends Model_User implements Model_ACL_
 		$this->_shopping_cart = new Model_Order;
 
 		$this->_has_many = array_merge($this->_has_many, array('vendo_roles'));
+
+		$this->_callbacks['email'] = 'check_unique_email';
 	}
 
 	/**
@@ -48,7 +50,7 @@ class Model_Vendo_Core_User_AutoModeler extends Model_User implements Model_ACL_
 	}
 
 	/**
-	 * Overload has() to translate role to vendo_role
+	 * Overload has() to translate role to vendo_role for auth
 	 *
 	 * @return bool
 	 */

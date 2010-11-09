@@ -119,7 +119,7 @@ class Model_Vendo_Core_User_ORM extends Model_User implements Model_ACL_User
 		catch (ReflectionException $ex) // try and find a message based policy
 		{
 			// Try each of this user's roles to match a policy
-			foreach ($this->roles as $role)
+			foreach ($this->roles->find_all() as $role)
 			{
 				$status = Kohana::message('policy', $policy_name.'.'.$role->id);
 				if ($status)
