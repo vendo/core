@@ -28,6 +28,7 @@ class Model_Vendo_Core_Product_Category extends AutoModeler_ORM
 
 	protected $_has_many = array(
 		'vendo_products',
+		'vendo_product_variants'
 	);
 
 	/**
