@@ -44,7 +44,7 @@ class Model_Vendo_Core_Product extends AutoModeler_ORM
 	 */
 	public function has_category($category_id)
 	{
-		return AutoModeler_ORM::factory(
+		return Model::factory(
 			'vendo_product_category', $category_id
 		)->has('vendo_products', $this->id);
 	}
