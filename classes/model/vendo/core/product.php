@@ -3,10 +3,10 @@
 /**
  * Product model
  *
- * @package    Vendo
- * @author     Jeremy Bush
- * @copyright  (c) 2010 Jeremy Bush
- * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
+ * @package   Vendo
+ * @author    Jeremy Bush <contractfrombelow@gmail.com>
+ * @copyright (c) 2010-2011 Jeremy Bush
+ * @license   ISC License http://github.com/zombor/Vendo/raw/master/LICENSE
  */
 class Model_Vendo_Core_Product extends AutoModeler_ORM
 {
@@ -39,6 +39,8 @@ class Model_Vendo_Core_Product extends AutoModeler_ORM
 
 	/**
 	 * Helper method to determin if this product has a category
+	 * 
+	 * @param int $category_id the category to check
 	 *
 	 * @return bool
 	 */

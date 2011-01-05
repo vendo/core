@@ -3,17 +3,20 @@
 /**
  * User model
  *
- * @package    Vendo
- * @author     Jeremy Bush
- * @copyright  (c) 2010 Jeremy Bush
- * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
+ * @package   Vendo
+ * @author    Jeremy Bush <contractfrombelow@gmail.com>
+ * @copyright (c) 2010-2011 Jeremy Bush
+ * @license   ISC License http://github.com/zombor/Vendo/raw/master/LICENSE
  */
-class Model_Vendo_Core_User_AutoModeler extends Model_User implements Model_ACL_User
+class Model_Vendo_Core_User_AutoModeler
+	extends Model_User implements Model_ACL_User
 {
 	protected $_shopping_cart;
 
 	/**
 	 * Overload constructor to set shopping cart
+	 * 
+	 * @param int $id the id to load
 	 *
 	 * @return null
 	 */
@@ -51,6 +54,9 @@ class Model_Vendo_Core_User_AutoModeler extends Model_User implements Model_ACL_
 
 	/**
 	 * Overload has() to translate role to vendo_role for auth
+	 * 
+	 * @param string $key   they key to compare
+	 * @param mixed  $value the value to compare
 	 *
 	 * @return bool
 	 */

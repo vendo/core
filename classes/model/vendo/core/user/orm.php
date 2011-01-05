@@ -3,10 +3,10 @@
 /**
  * User model
  *
- * @package    Vendo
- * @author     Jeremy Bush
- * @copyright  (c) 2010 Jeremy Bush
- * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
+ * @package   Vendo
+ * @author    Jeremy Bush <contractfrombelow@gmail.com>
+ * @copyright (c) 2010-2011 Jeremy Bush
+ * @license   ISC License http://github.com/zombor/Vendo/raw/master/LICENSE
  */
 class Model_Vendo_Core_User_ORM extends Model_User implements Model_ACL_User
 {
@@ -35,6 +35,9 @@ class Model_Vendo_Core_User_ORM extends Model_User implements Model_ACL_User
 
 	/**
 	 * Overload has() to translate role to vendo_role
+	 * 
+	 * @param string $key   they key to compare
+	 * @param mixed  $value the value to compare
 	 *
 	 * @return bool
 	 */
