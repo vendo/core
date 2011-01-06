@@ -164,4 +164,21 @@ class Model_Vendo_Core_User_ORM extends Model_User implements Model_ACL_User
 			);
 		}
 	}
+
+	/**
+	 * Returns standard password validation for this object for use in the
+	 * controller
+	 *
+	 * @return Validate
+	 */
+	public static function get_password_validation($user_post)
+	{
+		return Validate::factory(
+			array(
+				'password' => arr::get($user_post, 'password'),
+				'repeat_password' => arr::get($user_post, 'repeat_password'),
+			)
+		)->rule('repeat_password', 'not_empty')
+		->rule('password', 'matches', array('repeat_password'));
+	}
 }
