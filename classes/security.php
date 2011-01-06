@@ -24,9 +24,10 @@ class Security extends Kohana_Security
 	 *
 	 * This provides a basic, but effective, method of preventing CSRF attacks.
 	 *
-	 * @param   boolean  force a new token to be generated?
+	 * @param string $name the main name of the token
+	 * @param string $key  the sub-key of the token
+	 * 
 	 * @return  string
-	 * @uses    Session::instance
 	 */
 	public static function token($name = FALSE, $key = NULL)
 	{
@@ -35,6 +36,9 @@ class Security extends Kohana_Security
 
 	/**
 	 * Generates a unique token and stores it in the session
+	 *
+	 * @param string $name the main name of the token
+	 * @param string $key  the sub-key of the token
 	 *
 	 * @return string
 	 */
@@ -57,9 +61,9 @@ class Security extends Kohana_Security
 	 *
 	 * @return boolean
 	 */
-	public static function check($name, $key = NULL, $delete = true)
+	public static function check($name, $key = NULL, $delete = TRUE)
 	{
-		$token = Arr::get($_POST, 'token', false);
+		$token = Arr::get($_POST, 'token', FALSE);
 		return self::validate($token, $name, $key, $delete);
 	}
 
@@ -80,15 +84,15 @@ class Security extends Kohana_Security
 	 *          $validator = Validate::factory($args)
 	 *          ->rule('token', 'Csrf::validate', $token_params);
 	 */
-	public static function validate($value, $name, $key, $delete = true)
+	public static function validate($value, $name, $key, $delete = TRUE)
 	{
 		$csrf = Session::instance()->get('csrf', array());
-		$csrf = (array)$csrf;
+		$csrf = (array) $csrf;
 		$exists = (Arr::get($csrf, $name.'_'.$key) === $value);
 
 		if ($delete)
 		{
-			Session::instance()->set('csrf', null);
+			Session::instance()->set('csrf', NULL);
 		}
 
 		return $exists;

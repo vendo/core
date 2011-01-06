@@ -168,6 +168,8 @@ class Model_Vendo_Core_User_ORM extends Model_User implements Model_ACL_User
 	/**
 	 * Returns standard password validation for this object for use in the
 	 * controller
+	 * 
+	 * @param array $user_post an array of user parameters
 	 *
 	 * @return Validate
 	 */
