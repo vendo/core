@@ -17,7 +17,7 @@ abstract class Auth extends Kohana_Auth
 	 *
 	 * @return Model_Vendo_User
 	 */
-	public function get_user()
+	public function get_user($default = NULL)
 	{
 		$status = $this->_session->get($this->_config['session_key'], FALSE);
 
@@ -38,6 +38,11 @@ abstract class Auth extends Kohana_Auth
 	 */
 	public function hash($password, $salt = NULL)
 	{
+		if ( ! $salt)
+		{
+			$salt = Auth::$salt;
+		}
+
 		if (NULL == $salt)
 		{
 			throw new Kohana_Exception('Please set a salt value for auth.');
@@ -78,24 +83,23 @@ abstract class Auth extends Kohana_Auth
 	}
 
 	/**
-	 * Overload login() to use auth salt and hash()
+	 * Compare password with original (hashed). Works for current (logged in) user
 	 *
-	 * @param   string   username to log in
-	 * @param   string   password to check against
-	 * @param   boolean  enable autologin
+	 * @param   string  $password
 	 * @return  boolean
 	 */
-	public function login($username, $password, $remember = FALSE)
+	public function check_password($password)
 	{
-		if (empty($password))
-			return FALSE;
+		$user = $this->get_user();
 
-		if (is_string($password))
+		if ($user === FALSE)
 		{
-			// Create a hashed password using the salt from the stored password
-			$password = $this->hash($password, Auth::$salt);
+			// nothing to compare
+			return FALSE;
 		}
 
-		return $this->_login($username, $password, $remember);
+		$hash = $this->hash($password, Auth::$salt);
+
+		return $hash == $user->password;
 	}
 }

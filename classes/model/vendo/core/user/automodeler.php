@@ -184,12 +184,12 @@ class Model_Vendo_Core_User_AutoModeler
 	 */
 	public static function get_password_validation($user_post)
 	{
-		return Validate::factory(
+		return Validation::factory(
 			array(
 				'password' => arr::get($user_post, 'password'),
 				'repeat_password' => arr::get($user_post, 'repeat_password'),
 			)
-		)->rule('repeat_password', 'not_empty')
-		->rule('password', 'matches', array('repeat_password'));
+		)	->rule('repeat_password', 'not_empty')
+			->rule('password', 'matches', array(':validation', 'password', 'repeat_password'));
 	}
 }

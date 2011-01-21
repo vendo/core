@@ -9,14 +9,23 @@
  */
 class Controller extends Kohana_Controller
 {
-	/**
-	 * Overloaded after method to render profiler
-	 *
-	 * @return null
-	 */
+	public function before()
+	{
+		parent::before();
+		$view_name = 'View_'.Request::current()->controller().'_'.Request::current()->action();
+		if(Kohana::find_file('classes', strtolower(str_replace('_', '/', $view_name))))
+		{
+			$this->view = new $view_name;
+		}
+	}
+
 	public function after()
 	{
-		$this->request->response = $this->request->response->render().
-			View::factory('profiler/stats')->render();
+		if (isset($this->view))
+			$this->response->body(
+				$this->view->render().View::factory('profiler/stats')->render()
+			);
+		else
+			$this->response->body('<h1>No template found!</h1>');
 	}
 }
