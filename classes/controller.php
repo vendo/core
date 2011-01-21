@@ -12,7 +12,8 @@ class Controller extends Kohana_Controller
 	public function before()
 	{
 		parent::before();
-		$view_name = 'View_'.Request::current()->controller().'_'.Request::current()->action();
+		$directory = Request::current()->directory() ? Request::current()->directory().'_' : '';
+		$view_name = 'View_'.$directory.Request::current()->controller().'_'.Request::current()->action();
 		if(Kohana::find_file('classes', strtolower(str_replace('_', '/', $view_name))))
 		{
 			$this->view = new $view_name;
@@ -26,6 +27,10 @@ class Controller extends Kohana_Controller
 				$this->view->render().View::factory('profiler/stats')->render()
 			);
 		else
-			$this->response->body('<h1>No template found!</h1>');
+			$this->response->body(
+				'<h1>No template found for View_'.
+				Request::current()->controller().'_'.
+				Request::current()->action().'!</h1>'
+			);
 	}
 }
