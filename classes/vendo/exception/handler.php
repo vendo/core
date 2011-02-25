@@ -2,10 +2,10 @@
 /**
  * Vendo's custom exception handler, mainly handles 404s and other status codes
  *
- * @package    Vendo
- * @author     Jeremy Bush
- * @copyright  (c) 2010 Jeremy Bush
- * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
+ * @package   Vendo
+ * @author    Jeremy Bush <contractfrombelow@gmail.com>
+ * @copyright (c) 2010-2011 Jeremy Bush
+ * @license   ISC License http://github.com/zombor/Vendo/raw/master/LICENSE
  */
 class Vendo_Exception_Handler
 {
@@ -22,7 +22,7 @@ class Vendo_Exception_Handler
 		{
 			case 'Vendo_404':
 			case 'ReflectionException': // This is bad
-				Request::instance()->status = 404;
+				Request::current()->status = 404;
 				$view = new View_Error_404;
 				$view->message = $e->getMessage();
 				$view->title = 'File Not Found';
@@ -30,7 +30,7 @@ class Vendo_Exception_Handler
 				return TRUE;
 				break;
 			default:
-				return Kohana::exception_handler($e);
+				return Kohana_Exception::handler($e);
 				break;
 		}
 	}

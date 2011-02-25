@@ -3,10 +3,10 @@
 /**
  * Photo model
  *
- * @package    Vendo
- * @author     Jeremy Bush
- * @copyright  (c) 2010 Jeremy Bush
- * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
+ * @package   Vendo
+ * @author    Jeremy Bush <contractfrombelow@gmail.com>
+ * @copyright (c) 2010-2011 Jeremy Bush
+ * @license   ISC License http://github.com/zombor/Vendo/raw/master/LICENSE
  */
 class Model_Vendo_Core_Photo extends AutoModeler_ORM
 {
@@ -33,6 +33,8 @@ class Model_Vendo_Core_Photo extends AutoModeler_ORM
 
 	/**
 	 * Overload __construct to load by a filename
+	 * 
+	 * @param int $id the id to load
 	 *
 	 * @return null
 	 */
@@ -64,6 +66,8 @@ class Model_Vendo_Core_Photo extends AutoModeler_ORM
 
 	/**
 	 * Overload save() to process a photo stored in $file
+	 * 
+	 * @param Validate $validation the validation object to process with
 	 *
 	 * @return int
 	 */

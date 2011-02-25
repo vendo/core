@@ -1,14 +1,12 @@
 <?php
-
 /**
  * Product category model
  *
- * @package    Vendo
- * @author     Jeremy Bush
- * @copyright  (c) 2010 Jeremy Bush
- * @license    http://github.com/zombor/Vendo/raw/master/LICENSE
+ * @package   Vendo
+ * @author    Jeremy Bush <contractfrombelow@gmail.com>
+ * @copyright (c) 2010-2011 Jeremy Bush
+ * @license   ISC License http://github.com/zombor/Vendo/raw/master/LICENSE
  */
-
 class Model_Vendo_Core_Product_Category extends AutoModeler_ORM
 {
 	protected $_table_name = 'product_categories';
@@ -62,11 +60,12 @@ class Model_Vendo_Core_Product_Category extends AutoModeler_ORM
 	 */
 	public function has_category($category_id)
 	{
-		foreach (AutoModeler_ORM::factory('vendo_product_category')->fetch_where(
-			array(
-				array('parent_id', '=', $category_id)
-			)
-		) as $category)
+		$product_categories = Model::factory(
+			'vendo_product_category'
+		)->load(
+			db::select()->where('parent_id', '=', $category_id), NULL
+		);
+		foreach ($product_categories as $category)
 		{
 			if ($category->id == $this->id)
 			{
@@ -93,11 +92,10 @@ class Model_Vendo_Core_Product_Category extends AutoModeler_ORM
 		$tree = array();
 		$compare_object = NULL == $product ? $this : $product;
 
-		foreach (AutoModeler_ORM::factory('vendo_product_category')->fetch_where(
-			array(
-				array('parent_id', '=', $start)
-			)
-		) as $category)
+		$product_categories = Model::factory('vendo_product_category')->load(
+			db::select()->where('parent_id', '=', $start), NULL
+		);
+		foreach ($product_categories as $category)
 		{
 			$sub_tree = $this->full_tree(
 				$category->id, $remove_this, $product
