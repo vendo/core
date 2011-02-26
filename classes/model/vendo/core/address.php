@@ -13,7 +13,7 @@ class Model_Vendo_Core_Address extends AutoModeler_ORM
 	protected $_table_name = 'addresses';
 
 	protected $_data = array(
-		'id'                   => '',
+		'id'                   => NULL,
 		'billing_address'      => '',
 		'billing_city'         => '',
 		'billing_state'        => '',
