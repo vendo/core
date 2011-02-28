@@ -13,6 +13,13 @@ class Model_Vendo_Core_Product_Variant extends Model_Vendo_Product
 {
 	protected $_table_name = 'product_variants';
 
+	protected $_load_with = array('vendo_product' => 'parent');
+
+	protected $_rules = array(
+		'order'            => array('numeric'),
+		'primary_photo_id' => array('numeric'),
+	);
+
 	/**
 	 * overload the constructor to set model specific fields
 	 *
@@ -43,6 +50,11 @@ class Model_Vendo_Core_Product_Variant extends Model_Vendo_Product
 		if ('parent_id' == $key)
 		{
 			return new Model_Vendo_Product($this->$key);
+		}
+		elseif ( ! parent::__get($key) OR '0.00' == parent::__get($key))
+		{
+			// If we don't have a local value, try and get it from the parent
+			return arr::get($this->_lazy['product'], $key);
 		}
 
 		return parent::__get($key);
