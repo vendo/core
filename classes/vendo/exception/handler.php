@@ -21,12 +21,13 @@ class Vendo_Exception_Handler
 		switch (get_class($e))
 		{
 			case 'Vendo_404':
-			case 'ReflectionException': // This is bad
-				Request::current()->status = 404;
+			case 'HTTP_Exception_404':
+				$response = new Response;
+				$response->status(404);
 				$view = new View_Error_404;
 				$view->message = $e->getMessage();
 				$view->title = 'File Not Found';
-				echo $view;
+				echo $response->body($view)->send_headers()->body();
 				return TRUE;
 				break;
 			default:
