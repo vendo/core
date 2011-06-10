@@ -21,7 +21,9 @@ class Model_Vendo_Core_Role extends AutoModeler_ORM
 	);
 
 	protected $_rules = array(
-		'name' => array('not_empty'),
+		'name' => array(
+			array('not_empty'),
+		),
 	);
 
 	protected $_belongs_to = array(

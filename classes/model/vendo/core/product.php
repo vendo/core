@@ -22,11 +22,22 @@ class Model_Vendo_Core_Product extends AutoModeler_ORM
 	);
 
 	protected $_rules = array(
-		'name'             => array('not_empty'),
-		'price'            => array('not_empty'),
-		'description'      => array('not_empty'),
-		'order'            => array('not_empty', 'numeric'),
-		'primary_photo_id' => array('numeric'),
+		'name' => array(
+			array('not_empty'),
+		),
+		'price' => array(
+			array('not_empty'),
+		),
+		'description' => array(
+			array('not_empty'),
+		),
+		'order' => array(
+			array('not_empty'),
+			array('numeric'),
+		),
+		'primary_photo_id' => array(
+			array('numeric'),
+		),
 	);
 
 	protected $_belongs_to = array(

@@ -13,7 +13,7 @@ class Model_Vendo_Core_Address extends AutoModeler_ORM
 	protected $_table_name = 'addresses';
 
 	protected $_data = array(
-		'id'                   => '',
+		'id'                   => NULL,
 		'billing_address'      => '',
 		'billing_city'         => '',
 		'billing_state'        => '',
@@ -25,9 +25,17 @@ class Model_Vendo_Core_Address extends AutoModeler_ORM
 	);
 
 	protected $_rules = array(
-		'billing_address'      => array('not_empty'),
-		'billing_city'         => array('not_empty'),
-		'shipping_address'     => array('not_empty'),
-		'shipping_city'        => array('not_empty'),
+		'billing_address' => array(
+			array('not_empty'),
+		),
+		'billing_city' => array(
+			array('not_empty'),
+		),
+		'shipping_address' => array(
+			array('not_empty'),
+		),
+		'shipping_city' => array(
+			array('not_empty'),
+		),
 	);
 }
