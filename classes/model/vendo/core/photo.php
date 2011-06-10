@@ -18,7 +18,9 @@ class Model_Vendo_Core_Photo extends AutoModeler_ORM
 	);
 
 	protected $_rules = array(
-		'filename' => array('not_empty'),
+		'filename' => array(
+			array('not_empty'),
+		),
 	);
 
 	protected $_belongs_to = array(

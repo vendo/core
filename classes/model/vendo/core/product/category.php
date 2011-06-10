@@ -19,9 +19,16 @@ class Model_Vendo_Core_Product_Category extends AutoModeler_ORM
 	);
 
 	protected $_rules = array(
-		'name' => array('not_empty'),
-		'parent_id' => array('numeric'),
-		'order' => array('not_empty', 'numeric'),
+		'name' => array(
+			array('not_empty'),
+		),
+		'parent_id' => array(
+			array('numeric'),
+		),
+		'order' => array(
+			array('not_empty'),
+			array('numeric'),
+		),
 	);
 
 	protected $_has_many = array(

@@ -32,6 +32,18 @@ abstract class Auth extends Kohana_Auth
 	}
 
 	/**
+	 * Check if there is an active session. Optionally allows checking for a
+	 * specific role.
+	 *
+	 * @param   string   role name
+	 * @return  mixed
+	 */
+	public function logged_in($role = NULL)
+	{
+		return $this->get_user()->loaded();
+	}
+
+	/**
 	 * Overload auth's hashing with PBKDF2
 	 *
 	 * @return string

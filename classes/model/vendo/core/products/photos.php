@@ -20,8 +20,17 @@ class Model_Vendo_Core_Products_Photos extends AutoModeler_ORM
 	);
 
 	protected $_rules = array(
-		'product_id' => array('not_empty', 'numeric'),
-		'photo_id'   => array('not_empty', 'numeric'),
-		'order'      => array('not_empty', 'numeric'),
+		'product_id' => array(
+			array('not_empty'),
+			array('numeric'),
+		),
+		'photo_id' => array(
+			array('not_empty'),
+			array('numeric'),
+		),
+		'order' => array(
+			array('not_empty'),
+			array('numeric'),
+		),
 	);
 }
