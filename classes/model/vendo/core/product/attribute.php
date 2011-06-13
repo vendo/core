@@ -24,6 +24,23 @@ class Model_Vendo_Core_Product_Attribute extends AutoModeler_ORM
 		),
 	);
 
+	protected $_original_name = NULL;
+
+	/**
+	 * Overload __set to keep the original name
+	 *
+	 * @return null
+	 */
+	public function __set($key, $value)
+	{
+		if ('name' === $key)
+		{
+			$this->_original_name = $this->name;
+		}
+
+		parent::__set($key, $value);
+	}
+
 	/**
 	 * Overload save to create tables when needed
 	 *
@@ -40,8 +57,7 @@ class Model_Vendo_Core_Product_Attribute extends AutoModeler_ORM
 		{
 			$this->_db->query(
 				NULL,
-				'CREATE TABLE `product_attribute_values_'.
-					url::title($this->name).
+				'CREATE TABLE `'.url::title($this->name).
 				'` (
 				`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 				`value` varchar(100) NOT NULL,
@@ -50,6 +66,15 @@ class Model_Vendo_Core_Product_Attribute extends AutoModeler_ORM
 				`price` decimal(10,2) NOT NULL,
 				PRIMARY KEY (`id`)
 				) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1'
+			);
+		}
+		else
+		{
+			$this->_db->query(
+				NULL,
+				'RENAME TABLE `product_attribute_values_'.
+					url::title($this->_original_name).
+					'` TO `'.$this->value_table_name().'`'
 			);
 		}
 
@@ -67,7 +92,17 @@ class Model_Vendo_Core_Product_Attribute extends AutoModeler_ORM
 
 		$this->_db->query(
 			NULL,
-			'DROP TABLE `product_attribute_values_'.url::title($this->name).'`'
+			'DROP TABLE `'.$this->value_table_name().'`'
 		);
+	}
+
+	/**
+	 * Gets the related value table for this attribute
+	 *
+	 * @return string
+	 */
+	public function value_table_name()
+	{
+		return 'product_attribute_values_'.url::title($this->name);
 	}
 }

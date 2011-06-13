@@ -72,4 +72,50 @@ class Model_Vendo_Core_Product extends AutoModeler_ORM
 	{
 		return new Model_Vendo_Photo($this->primary_photo_id);
 	}
+
+	/**
+	 * Returns an array of attributes with sub-arrays of their values
+	 *
+	 * @return array
+	 */
+	public function attributes()
+	{
+		$attributes = array();
+		$key = 0;
+
+		// Look in each attribute table for rows with this product's id
+		foreach (
+			Model::factory('vendo_product_attribute')->load(NULL, NULL)
+			as $attribute
+		)
+		{
+			
+			foreach (
+				Model::factory('vendo_product_attribute_value')->set_table_name(
+					$attribute->name
+				)->load(
+					db::select()->where('product_id', '=', $this->id),
+					FALSE
+				) as $value
+			)
+			{
+				$attributes[$key]['values'][] = array(
+					'value' => $value->value,
+					'price' => $value->price,
+				);
+			}
+
+			if (
+				isset($attributes[$key])
+				AND count($attributes[$key])
+			)
+			{
+				$attributes[$key]['name'] = $attribute->name;
+			}
+
+			$key++;
+		}
+
+		return $attributes;
+	}
 }

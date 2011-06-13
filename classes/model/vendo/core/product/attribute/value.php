@@ -38,7 +38,7 @@ class Model_Vendo_Core_Product_Attribute_Value extends AutoModeler_ORM
 	 */
 	public function set_table_name($value)
 	{
-		$this->_table_name = 'product_attribute_values_'.$value;
+		$this->_table_name = 'product_attribute_values_'.url::title($value);
 
 		return $this;
 	}
