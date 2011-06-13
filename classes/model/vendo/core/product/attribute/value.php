@@ -14,11 +14,11 @@ class Model_Vendo_Core_Product_Attribute_Value extends AutoModeler_ORM
 	protected $_table_name = 'product_attribute_values_';
 
 	protected $_data = array(
-		'id'         => NULL,
-		'value'      => '',
+		'id'                   => NULL,
+		'value'                => '',
 		'product_attribute_id' => '',
-		'product_id' => '',
-		'price' => 0,
+		'product_id'           => '',
+		'price'                => 0,
 	);
 
 	protected $_rules = array(

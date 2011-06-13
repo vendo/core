@@ -47,6 +47,7 @@ class Model_Vendo_Core_Product_Attribute extends AutoModeler_ORM
 				`value` varchar(100) NOT NULL,
 				`product_attribute_id` bigint(20) unsigned NOT NULL,
 				`product_id` bigint(20) unsigned NOT NULL,
+				`price` decimal(10,2) NOT NULL,
 				PRIMARY KEY (`id`)
 				) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1'
 			);
